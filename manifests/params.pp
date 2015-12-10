@@ -3,10 +3,10 @@
 class proxmox4::params {
   case $::osfamily {
     'Debian': {
-      if $::operatingsystem == 'Debian' and versioncmp($::operatingsystemrelease, '7.0') >= 0 {
+      if $::operatingsystem == 'Debian' and versioncmp($::operatingsystemrelease, '8.0') >= 0 {
         # Virtual Environment packages
         $ve_pkg_ensure              = 'present'
-        $ve_pkg_name                = [ 'proxmox-ve-2.6.32', 'ksm-control-daemon', 'vzprocps', 'open-iscsi', 'bootlogd', 'pve-firmware' ]
+        $ve_pkg_name                = [ 'proxmox-ve', 'ksm-control-daemon', 'open-iscsi', 'pve-firmware' ]
 
         # PVE Kernel
         $kernel_pkg_name            = [ 'pve-kernel-4.2.6-1-pve' ]
@@ -35,14 +35,6 @@ class proxmox4::params {
         $pve_modules_list           = [ 'iptable_filter', 'iptable_mangle', 'iptable_nat', 'ipt_length', 'ipt_limit', 'ipt_LOG', 'ipt_MASQUERADE', 'ipt_multiport', 'ipt_owner', 'ipt_recent', 'ipt_REDIRECT', 'ipt_REJECT', 'ipt_state', 'ipt_TCPMSS', 'ipt_tcpmss', 'ipt_TOS', 'ipt_tos', 'ip_conntrack', 'ip_nat_ftp', 'xt_iprange', 'xt_comment', 'ip6table_filter', 'ip6table_mangle', 'ip6t_REJECT' ]
         $pve_modules_file_path      = '/etc/modules-load.d/proxmox.conf'
         $pve_modules_file_content   = 'proxmox/hypervisor/proxmox_modules.conf.erb'
-
-        # OpenVZ configuration
-        $vz_config_file_path        = '/etc/vz/vz.conf'
-        $vz_config_file_tpl         = 'proxmox/hypervisor/vz.conf.erb'
-        $vz_iptables_modules        = true
-        $vz_service_name            = 'vz'
-        $vz_service_manage          = true
-        $vz_service_enabled         = true
 
         # Firewall
         $labs_firewall_rule         = false

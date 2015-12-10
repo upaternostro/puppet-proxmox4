@@ -33,13 +33,6 @@ class proxmox4::hypervisor::config {
       onlyif  => 'grep "if (data.status !== \'Active\') {" /usr/share/pve-manager/ext4/pvemanagerlib.js',
     }
 
-    ## OpenVZ configuration
-    file { $proxmox4::hypervisor::vz_config_file_path:
-      ensure  => present,
-      content => template($proxmox4::hypervisor::vz_config_file_tpl),
-      notify  => Service[$proxmox4::hypervisor::vz_service_name],
-    }
-
   }
 
   if $proxmox4::hypervisor::labs_firewall_rule == true {

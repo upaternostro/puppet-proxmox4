@@ -11,13 +11,6 @@ class proxmox4::hypervisor::service {
     $pveproxy_service_ensure = 'stopped'
   }
 
-  if $proxmox4::hypervisor::vz_service_enabled == true {
-    $vz_service_ensure = 'running'
-  } else {
-    $vz_service_ensure = 'stopped'
-  }
-
-
   if $::is_proxmox == 'true' {
 
     if $proxmox4::hypervisor::pveproxy_service_manage == true {
@@ -25,15 +18,6 @@ class proxmox4::hypervisor::service {
         ensure     => $pveproxy_service_ensure,
         enable     => $proxmox4::hypervisor::pveproxy_service_enabled,
         hasstatus  => false,
-        hasrestart => true,
-      }
-    }
-
-    if $proxmox4::hypervisor::vz_service_manage == true {
-      service { $proxmox4::hypervisor::vz_service_name:
-        ensure     => $vz_service_ensure,
-        enable     => $proxmox4::hypervisor::pveproxy_service_enabled,
-        hasstatus  => true,
         hasrestart => true,
       }
     }

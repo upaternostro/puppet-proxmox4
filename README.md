@@ -21,7 +21,7 @@
 
 ## Overview
 
-The proxmox module provide a simple way to manage Proxmox hypervisor and OpenVZ network's configuration with Puppet.
+The proxmox module provide a simple way to manage Proxmox hypervisor configuration with Puppet.
 
 ## Module Description
 
@@ -39,9 +39,6 @@ The proxmox module automates installing Proxmox on Debian systems.
 * Users and group permissions for WebGUI.
 * WebGUI's service (pveproxy).
 * Kernel modules loaded at the boot time.
-* OpenVZ's configuration file.
-* OpenVZ's service.
-* OpenVZ CT network's configuration.
 
 ### Beginning with Proxmox
 
@@ -189,7 +186,7 @@ proxmox4::hypervisor::user { 'marvin':
 #### proxmox4::hypervisor
 
 * `ve_pkg_ensure`: What to set the Virtual Environnment package to. Can be 'present', 'absent' or 'version'. Defaults to 'present'.
-* `ve_pkg_name`: The list of VirtualEnvironnment packages. Can be an array [ 'proxmox-ve-2.6.32', 'ksm-control-daemon', 'vzprocps', 'open-iscsi', 'bootlogd', 'pve-firmware' ].
+* `ve_pkg_name`: The list of VirtualEnvironnment packages. Can be an array [ 'proxmox-ve', 'ksm-control-daemon', 'open-iscsi', 'pve-firmware' ].
 * `kernel_pkg_name`: The list of packages to install the new PVE kernel. Can be an array [ 'pve-kernel-4.2.6-1-pve', '...' ].
 * `rec_pkg_name`: The list of recommended and usefull packages for Proxmox. Can be an array [ 'ntp', 'ssh', 'lvm2', 'bridge-utils' ].
 * `old_pkg_ensure`: What to set useless packages (non recommended, previous kernel, ...). Can be 'present' or 'absent'. Defaults to 'absent'.
@@ -206,12 +203,6 @@ proxmox4::hypervisor::user { 'marvin':
 * `pve_modules_list`: The list of additionnal modules to load at boot time.
 * `pve_modules_file_path`: The configuration file that will contain the modules list. Defaults to '/etc/modules-load.d/proxmox.conf'.
 * `pve_modules_file_content`: Template file used to generate the previous configuration file. Defaults to 'proxmox/hypervisor/proxmox_modules.conf.erb'.
-* `vz_config_file_path`: Path of the main OpenVZ's configuration file. Defaults to '/etc/vz/vz.conf'.
-* `vz_config_file_tpl`: Template file use to generate the OpenVZ's configuration file. Defaults to 'proxmox/hypervisor/vz.conf.erb'.
-* `vz_iptables_modules`: If set to 'true', OpenVZ will share a list of iptables modules to the containers. Can be 'true' or 'false'. Defaults to 'true'.
-* `vz_service_name`: The OpenVZ's service name. Defaults to 'vz'.
-* `vz_service_manage`: If set to 'true', Puppet will manage the OpenVZ's service. Can be 'true' or 'false'. Defaults to 'true'.
-* `vz_service_enabled`: If set to 'true', Puppet will ensure the OpenVZ's service is running. Can be 'true' or 'false'. Defaults to 'true'.
 * `labs_firewall_rule`: If set to 'true', Puppet will set a iptable rule to allow WebGUI and VNC's port access. Can be 'true' or 'false'. Defaults to 'false'.
 * `cluster_master_ip`: The ip address of the "master" node that will create the cluster. Must be an IP address. Defaults to 'undef'.
 * `cluster_name`: The cluster's name. Defaults to 'undef'.
@@ -227,7 +218,7 @@ proxmox4::hypervisor::user { 'marvin':
 
 Other notes
 -----------
-By default `proxmox4::hypervisor` comes with several modules kernel load at boot time. Mainly iptables's modules to allow it in the OpenVZ CT.
+By default `proxmox4::hypervisor` comes with several modules kernel load at boot time. Mainly iptables's modules to allow it in the CT.
 
 The default modules list:
 * `iptable_filter`

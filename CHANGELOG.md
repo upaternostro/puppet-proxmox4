@@ -10,3 +10,4 @@
 * Now use "proxmox4::…" instead of "proxmox::…"
 * Doesn't need a specific kernel like ProxmoxV3. There is only a 4.x kernel.
 * The PVE Kernel is newer than the default Debian one, so doesn't need grub-set-default anymore.
+* Remove OpenVZ configuration for the Hypervisor.

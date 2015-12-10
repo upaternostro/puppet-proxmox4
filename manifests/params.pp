@@ -16,7 +16,7 @@ class proxmox4::params {
 
         # Old useless packages
         $old_pkg_ensure             = 'absent'
-        $old_pkg_name               = [ 'acpid',  'linux-image-amd64', 'linux-base', 'linux-image-3.2.0-4-amd64' ]
+        $old_pkg_name               = [ 'acpid',  'linux-image-amd64', 'linux-base', 'linux-image-3.16.0-4-amd64' ]
 
         # Manage PVE Enterprise repository (need a subscription)
         $pve_enterprise_repo_ensure = 'absent'
@@ -58,6 +58,5 @@ class proxmox4::params {
     }
 
   }
-
 
 } # Private class: proxmox4::params

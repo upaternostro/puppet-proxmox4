@@ -4,7 +4,6 @@
 #
 class proxmox4::hypervisor::service {
 
-
   if $proxmox4::hypervisor::pveproxy_service_enabled == true {
     $pveproxy_service_ensure = 'running'
   } else {
@@ -23,7 +22,5 @@ class proxmox4::hypervisor::service {
     }
 
   }
-
-
 
 } # Private class: proxmox4::hypervisor::service

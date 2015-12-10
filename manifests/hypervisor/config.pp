@@ -15,7 +15,6 @@ class proxmox4::hypervisor::config {
     logoutput => 'on_failure',
   }
 
-
   ## Quoted boolean value because can't return "true" boolean with personal fact
   if $::is_proxmox == 'true' {
 
@@ -44,6 +43,5 @@ class proxmox4::hypervisor::config {
     }
 
   }
-
 
 } # Private class: proxmox4::hypervisor::config

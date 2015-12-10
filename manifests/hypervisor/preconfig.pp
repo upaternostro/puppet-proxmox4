@@ -53,8 +53,6 @@ class proxmox4::hypervisor::preconfig {
     }
   }
 
-  $values = [ 'v1', 'v2' ]
-
   file { $proxmox4::hypervisor::pve_modules_file_path:
     ensure  => present,
     content => template($proxmox4::hypervisor::pve_modules_file_content),

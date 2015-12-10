@@ -56,12 +56,11 @@ include proxmox4::hypervisor
 ```
 **Note**: The module will NOT automatically reboot the system on the PVE Kernel. You will need to reboot it manually and start again the puppet agent.
 
-#### KVM only
+#### Install a new hypervisor
 
-If you will use only KVM you can have a most recent kernel with:
+To install Proxmox with the default parameters:
 ```
 class { 'proxmox4::hypervisor':
-  kvm_only => true,
 }
 ```
 
@@ -73,13 +72,12 @@ class { 'proxmox4::hypervisor':
 }
 ```
 
-#### Create a cluster full KVM (for Ceph)
+#### Create a cluster full (for Ceph)
 ```
 node "pve_node" {
-  # Install an hypervisor full KVM
+  # Install an hypervisor
   class { 'proxmox4::hypervisor':
     pveproxy_allow    => '127.0.0.1,192.168.0.0/24',
-    kvm_only          => true,
     cluster_master_ip => '192.168.0.201',
     cluster_name      => 'DeepThought',
   }
@@ -192,9 +190,7 @@ proxmox4::hypervisor::user { 'marvin':
 
 * `ve_pkg_ensure`: What to set the Virtual Environnment package to. Can be 'present', 'absent' or 'version'. Defaults to 'present'.
 * `ve_pkg_name`: The list of VirtualEnvironnment packages. Can be an array [ 'proxmox-ve-2.6.32', 'ksm-control-daemon', 'vzprocps', 'open-iscsi', 'bootlogd', 'pve-firmware' ].
-* `kvm_only`: If set to 'true', Puppet will install a newer kernel compatible only with KVM. Accepts 'true' or 'false'. Defaults to 'false'.
-* `kernel_kvm_pkg_name`: The list of packages to install the newer kernel. Can be an array [ 'pve-kernel-3.10.0-13-pve', '...' ].
-* `kernel_pkg_name`: The list of packages to install a kernel compatible with both KVM and OpenVZ. Can be an array [ 'pve-kernel-2.6.32-43-pve', '...' ].
+* `kernel_pkg_name`: The list of packages to install the new PVE kernel. Can be an array [ 'pve-kernel-4.2.6-1-pve', '...' ].
 * `rec_pkg_name`: The list of recommended and usefull packages for Proxmox. Can be an array [ 'ntp', 'ssh', 'lvm2', 'bridge-utils' ].
 * `old_pkg_ensure`: What to set useless packages (non recommended, previous kernel, ...). Can be 'present' or 'absent'. Defaults to 'absent'.
 * `old_pkg_name`: The list of useless packages. Can be an array [ 'acpid',  'linux-image-amd64', 'linux-base', 'linux-image-3.2.0-4-amd64' ].

@@ -24,7 +24,6 @@
 # === Examples
 #
 #  class { '::proxmox4::hypervisor':
-#    kvm_only => true,
 #  }
 #
 # === Authors
@@ -38,8 +37,6 @@
 class proxmox4::hypervisor (
   $ve_pkg_ensure              = $proxmox4::params::ve_pkg_ensure,
   $ve_pkg_name                = $proxmox4::params::ve_pkg_name,
-  $kvm_only                   = $proxmox4::params::kvm_only,
-  $kernel_kvm_pkg_name        = $proxmox4::params::kernel_kvm_pkg_name,
   $kernel_pkg_name            = $proxmox4::params::kernel_pkg_name,
   $rec_pkg_name               = $proxmox4::params::rec_pkg_name,
   $old_pkg_ensure             = $proxmox4::params::old_pkg_ensure,

@@ -1,4 +1,4 @@
-# == Define: proxmox::hypervisor::group
+# == Define: proxmox4::hypervisor::group
 #
 # Manage groups and permissions to access the PVE ressources
 #
@@ -29,7 +29,7 @@
 #
 #   The user list members of this group. A user will be created if not exist.
 #
-define proxmox::hypervisor::group ( $group = $title, $acl_path = '/', $permission_file = '/etc/pve/user.cfg', $users = '', $role ) {
+define proxmox4::hypervisor::group ( $group = $title, $acl_path = '/', $permission_file = '/etc/pve/user.cfg', $users = '', $role ) {
 
   File {
     owner  => root,
@@ -58,7 +58,7 @@ define proxmox::hypervisor::group ( $group = $title, $acl_path = '/', $permissio
     }
     ->
     # Create user(s) and add it to this group
-    proxmox::hypervisor::user { $users:
+    proxmox4::hypervisor::user { $users:
       group => $group,
     }
 
@@ -71,4 +71,4 @@ define proxmox::hypervisor::group ( $group = $title, $acl_path = '/', $permissio
 
   }
 
-} # Public ressource: proxmox::hypervisor::group
+} # Public ressource: proxmox4::hypervisor::group

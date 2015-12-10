@@ -45,14 +45,14 @@ The proxmox module automates installing Proxmox on Debian systems.
 
 ### Beginning with Proxmox
 
-To begin using proxmox module with default parameters, declare the hypervisor's class with `include proxmox::hypervisor`.
+To begin using proxmox module with default parameters, declare the hypervisor's class with `include proxmox4::hypervisor`.
 
 ## Usage
 
 ### Hypervisor
 
 ```
-include proxmox::hypervisor
+include proxmox4::hypervisor
 ```
 **Note**: The module will NOT automatically reboot the system on the PVE Kernel. You will need to reboot it manually and start again the puppet agent.
 
@@ -60,7 +60,7 @@ include proxmox::hypervisor
 
 If you will use only KVM you can have a most recent kernel with:
 ```
-class { 'proxmox::hypervisor':
+class { 'proxmox4::hypervisor':
   kvm_only => true,
 }
 ```
@@ -68,7 +68,7 @@ class { 'proxmox::hypervisor':
 #### Disable additionnal modules
 Disable all additionnal modules load at the boot time:
 ```
-class { 'proxmox::hypervisor':
+class { 'proxmox4::hypervisor':
   pve_modules_list => [ '' ],
 }
 ```
@@ -77,14 +77,14 @@ class { 'proxmox::hypervisor':
 ```
 node "pve_node" {
   # Install an hypervisor full KVM
-  class { 'proxmox::hypervisor':
+  class { 'proxmox4::hypervisor':
     pveproxy_allow    => '127.0.0.1,192.168.0.0/24',
     kvm_only          => true,
     cluster_master_ip => '192.168.0.201',
     cluster_name      => 'DeepThought',
   }
   # Access to PVE Webgui
-  proxmox::hypervisor::group { 'sysadmin': role => "Administrator", users => [ 'marvin@pam', 'arthur@pam' ] }
+  proxmox4::hypervisor::group { 'sysadmin': role => "Administrator", users => [ 'marvin@pam', 'arthur@pam' ] }
 
   # SSH authorized keys between all nodes without passphrase (the module generate a key if not present)
   ssh_authorized_key { 'hyper01':
@@ -144,12 +144,12 @@ Will create a Cluster Proxmox with name "Deepthought", the master will be "hyper
 
 Only OpenVZ is supported right now but the vm's class will check-it by it self:
 ```
-include proxmox::vm
+include proxmox4::vm
 ```
 
-#### proxmox::vm::openvz
+#### proxmox4::vm::openvz
 
-Automatically call by the `proxmox::vm` class, it will manage network configuration, but only few configurations are possible:
+Automatically call by the `proxmox4::vm` class, it will manage network configuration, but only few configurations are possible:
 * Only one Virtual Ethernet device (aka veth) and it will work with **DHCP**.
 * If a veth is available, it will be the main network's interface (set the default gateway throught eth0).
 * If a veth is available, only one Virtual Network device (aka venet) as chance to work (the first one), because all others routes will be flushed.
@@ -161,34 +161,34 @@ Automatically call by the `proxmox::vm` class, it will manage network configurat
 
 * `proxmox`: Main class, do nothing right now.
 
-* `proxmox::hypervisor`: Install the Proxmox hypervisor on the system.
+* `proxmox4::hypervisor`: Install the Proxmox hypervisor on the system.
 
-* `proxmox::vm`: Manage virtual machines and containers.
+* `proxmox4::vm`: Manage virtual machines and containers.
 
 ### Defined types
 
-* `proxmox::hypervisor::group`: Manage groups for Proxmox WebGUI and set permissions.
+* `proxmox4::hypervisor::group`: Manage groups for Proxmox WebGUI and set permissions.
 
 ```
-proxmox::hypervisor::group { 'sysadmin':
+proxmox4::hypervisor::group { 'sysadmin':
   role  => "Administrator",
   users => [ 'user1@pam', 'toto@pve' ],
 }
 ```
 
-* `proxmox::hypervisor::user`: Manage user for Proxmox WebGUI.
+* `proxmox4::hypervisor::user`: Manage user for Proxmox WebGUI.
 
 ```
-proxmox::hypervisor::user { 'marvin':
+proxmox4::hypervisor::user { 'marvin':
   group => 'sysadmin',
 }
 ```
 
-  Mainly used by the `proxmox::hypervisor::group` defined type to create the group, permissions and also create/add the users to a group. Because to add a user to a group via this defined type, the group should already exist.
+  Mainly used by the `proxmox4::hypervisor::group` defined type to create the group, permissions and also create/add the users to a group. Because to add a user to a group via this defined type, the group should already exist.
 
 ### Parameters
 
-#### proxmox::hypervisor
+#### proxmox4::hypervisor
 
 * `ve_pkg_ensure`: What to set the Virtual Environnment package to. Can be 'present', 'absent' or 'version'. Defaults to 'present'.
 * `ve_pkg_name`: The list of VirtualEnvironnment packages. Can be an array [ 'proxmox-ve-2.6.32', 'ksm-control-daemon', 'vzprocps', 'open-iscsi', 'bootlogd', 'pve-firmware' ].
@@ -220,7 +220,7 @@ proxmox::hypervisor::user { 'marvin':
 * `cluster_master_ip`: The ip address of the "master" node that will create the cluster. Must be an IP address. Defaults to 'undef'.
 * `cluster_name`: The cluster's name. Defaults to 'undef'.
 
-#### proxmox::vm
+#### proxmox4::vm
 * `vm_interfaces_path`: The main network configuration's file. Defaults to '/etc/network/interfaces'.
 * `vm_interfaces_content`: Template file used to generate the previous configuration file. Defaults to 'proxmox/vm/openvz_interfaces.erb'.
 * `vm_interfaces_tail_path`: A second network configuration file that will be concatenated in the main. Defaults to '/etc/network/interfaces.tail'.
@@ -231,7 +231,7 @@ proxmox::hypervisor::user { 'marvin':
 
 Other notes
 -----------
-By default `proxmox::hypervisor` comes with several modules kernel load at boot time. Mainly iptables's modules to allow it in the OpenVZ CT.
+By default `proxmox4::hypervisor` comes with several modules kernel load at boot time. Mainly iptables's modules to allow it in the OpenVZ CT.
 
 The default modules list:
 * `iptable_filter`

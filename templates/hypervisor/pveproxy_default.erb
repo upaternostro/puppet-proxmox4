@@ -2,7 +2,7 @@
 #Don't edit, please see https://forge.puppetlabs.com/gardouille/proxmox
 
 # Access control list (Apache2 like)
-ALLOW_FROM="<%= scope.lookupvar('proxmox::hypervisor::pveproxy_allow') %>"
-DENY_FROM="<%= scope.lookupvar('proxmox::hypervisor::pveproxy_deny') %>"
-POLICY="<%= scope.lookupvar('proxmox::hypervisor::pveproxy_policy') %>"
+ALLOW_FROM="<%= scope.lookupvar('proxmox4::hypervisor::pveproxy_allow') %>"
+DENY_FROM="<%= scope.lookupvar('proxmox4::hypervisor::pveproxy_deny') %>"
+POLICY="<%= scope.lookupvar('proxmox4::hypervisor::pveproxy_policy') %>"
 

@@ -1,4 +1,4 @@
-# == Define: proxmox::hypervisor::user
+# == Define: proxmox4::hypervisor::user
 #
 # Manage users allowed to WebGUI
 #
@@ -19,7 +19,7 @@
 #
 #   The file where group's informations are stored.
 #
-define proxmox::hypervisor::user ( $user = $title, $group = '', $permission_file = '/etc/pve/user.cfg' ) {
+define proxmox4::hypervisor::user ( $user = $title, $group = '', $permission_file = '/etc/pve/user.cfg' ) {
 
   Exec {
     path      => ['/bin','/sbin','/usr/bin','/usr/sbin'],
@@ -56,4 +56,4 @@ define proxmox::hypervisor::user ( $user = $title, $group = '', $permission_file
     }
   }
 
-} # Public ressource: proxmox::hypervisor::user
+} # Public ressource: proxmox4::hypervisor::user

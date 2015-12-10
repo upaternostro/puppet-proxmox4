@@ -1,8 +1,8 @@
-proxmox::hypervisor::group { 'sysadmin':
+proxmox4::hypervisor::group { 'sysadmin':
   role  => 'Administrator',
   users => [ 'user1@pam', 'toto@pve' ],
 }
-proxmox::hypervisor::group { 'audit':
+proxmox4::hypervisor::group { 'audit':
   role  => 'PVEAuditor',
   users => [ 'user2@pam' ],
 }

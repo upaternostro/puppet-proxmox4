@@ -1,8 +1,8 @@
-# == Class: proxmox::hypervisor::install
+# == Class: proxmox4::hypervisor::install
 #
 # Install Proxmox and inform the user he needs to reboot the system on the PVE kernel
 #
-class proxmox::hypervisor::install {
+class proxmox4::hypervisor::install {
 
   Exec {
     path      => [ '/bin', '/sbin', '/usr/bin', '/usr/sbin' ],
@@ -14,18 +14,18 @@ class proxmox::hypervisor::install {
   if $::is_pve_kernel == 'true' {
 
     # Installation of Virtual Environnment
-    package { $proxmox::hypervisor::ve_pkg_name:
-      ensure => $proxmox::hypervisor::ve_pkg_ensure,
+    package { $proxmox4::hypervisor::ve_pkg_name:
+      ensure => $proxmox4::hypervisor::ve_pkg_ensure,
     } ->
 
     # Remove useless packages (such as the standard kernel, acpid, ...)
-    package { $proxmox::hypervisor::old_pkg_name:
-      ensure => $proxmox::hypervisor::old_pkg_ensure,
+    package { $proxmox4::hypervisor::old_pkg_name:
+      ensure => $proxmox4::hypervisor::old_pkg_ensure,
       notify => Exec['update_grub'],
     }
 
     # Ensure that some recommended packages are present on the system
-    ensure_packages( $proxmox::hypervisor::rec_pkg_name )
+    ensure_packages( $proxmox4::hypervisor::rec_pkg_name )
 
   }
   else { # If the system run on a standard Debian Kernel
@@ -35,25 +35,25 @@ class proxmox::hypervisor::install {
     # You will need to update your PVE kernel manually.
 
     # Installation of the PVE Kernel
-    if $proxmox::hypervisor::kvm_only == true {
+    if $proxmox4::hypervisor::kvm_only == true {
       notify { 'Please REBOOT':
-        message  => "Need to REBOOT the system on the new PVE kernel (${proxmox::hypervisor::kernel_kvm_pkg_name}) ...",
+        message  => "Need to REBOOT the system on the new PVE kernel (${proxmox4::hypervisor::kernel_kvm_pkg_name}) ...",
         loglevel => warning,
       }
       ->
-      package { $proxmox::hypervisor::kernel_kvm_pkg_name:
-        ensure => $proxmox::hypervisor::ve_pkg_ensure,
+      package { $proxmox4::hypervisor::kernel_kvm_pkg_name:
+        ensure => $proxmox4::hypervisor::ve_pkg_ensure,
         notify => Exec['update_grub'],
       }
     }
     else {
       notify { 'Please REBOOT':
-        message  => "Need to REBOOT the system on the new PVE kernel (${proxmox::hypervisor::kernel_pkg_name}) ...",
+        message  => "Need to REBOOT the system on the new PVE kernel (${proxmox4::hypervisor::kernel_pkg_name}) ...",
         loglevel => warning,
       }
       ->
-      package { $proxmox::hypervisor::kernel_pkg_name:
-        ensure => $proxmox::hypervisor::ve_pkg_ensure,
+      package { $proxmox4::hypervisor::kernel_pkg_name:
+        ensure => $proxmox4::hypervisor::ve_pkg_ensure,
         notify => Exec['update_grub','grub_reboot'],
       }
       # The kernel that allow KVM + OpenVZ is older than the standard Debian's
@@ -75,4 +75,4 @@ class proxmox::hypervisor::install {
   }
 
 
-} # Private class: proxmox::hypervisor::install
+} # Private class: proxmox4::hypervisor::install

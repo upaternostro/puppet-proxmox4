@@ -1,6 +1,6 @@
-# == Class: proxmox::params
+# == Class: proxmox4::params
 #
-class proxmox::params {
+class proxmox4::params {
   case $::osfamily {
     'Debian': {
       if $::operatingsystem == 'Debian' and versioncmp($::operatingsystemrelease, '7.0') >= 0 {
@@ -70,4 +70,4 @@ class proxmox::params {
   }
 
 
-} # Private class: proxmox::params
+} # Private class: proxmox4::params

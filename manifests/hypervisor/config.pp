@@ -1,8 +1,8 @@
-# == Class: proxmox::hypervisor::config
+# == Class: proxmox4::hypervisor::config
 #
 # Some tiny configurations for Proxmox
 #
-class proxmox::hypervisor::config {
+class proxmox4::hypervisor::config {
 
   File {
     owner => root,
@@ -20,10 +20,10 @@ class proxmox::hypervisor::config {
   if $::is_proxmox == 'true' {
 
     # Pveproxy access control list
-    file { $proxmox::hypervisor::pveproxy_default_path:
+    file { $proxmox4::hypervisor::pveproxy_default_path:
       ensure  => present,
-      content => template($proxmox::hypervisor::pveproxy_default_content),
-      notify  => Service[$proxmox::hypervisor::pveproxy_service_name],
+      content => template($proxmox4::hypervisor::pveproxy_default_content),
+      notify  => Service[$proxmox4::hypervisor::pveproxy_service_name],
     }
     ->
 
@@ -34,15 +34,15 @@ class proxmox::hypervisor::config {
     }
 
     ## OpenVZ configuration
-    file { $proxmox::hypervisor::vz_config_file_path:
+    file { $proxmox4::hypervisor::vz_config_file_path:
       ensure  => present,
-      content => template($proxmox::hypervisor::vz_config_file_tpl),
-      notify  => Service[$proxmox::hypervisor::vz_service_name],
+      content => template($proxmox4::hypervisor::vz_config_file_tpl),
+      notify  => Service[$proxmox4::hypervisor::vz_service_name],
     }
 
   }
 
-  if $proxmox::hypervisor::labs_firewall_rule == true {
+  if $proxmox4::hypervisor::labs_firewall_rule == true {
 
     firewall { '100 accept proxmox':
       proto  => 'tcp',
@@ -53,4 +53,4 @@ class proxmox::hypervisor::config {
   }
 
 
-} # Private class: proxmox::hypervisor::config
+} # Private class: proxmox4::hypervisor::config

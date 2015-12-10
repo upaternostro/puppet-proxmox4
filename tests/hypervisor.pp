@@ -1,1 +1,1 @@
-include proxmox::hypervisor
+include proxmox4::hypervisor

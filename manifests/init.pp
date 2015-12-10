@@ -1,7 +1,7 @@
 # == Class: proxmox
 #
 # This class do nothing right now.
-# Please use proxmox::hypervisor to manage proxmox.
+# Please use proxmox4::hypervisor to manage proxmox.
 #
 # === Examples
 #

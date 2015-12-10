@@ -1,8 +1,8 @@
-# == Class: proxmox::hypervisor::preconfig
+# == Class: proxmox4::hypervisor::preconfig
 #
 # Before installing Proxmox some modifications have to be applied on the system
 #
-class proxmox::hypervisor::preconfig {
+class proxmox4::hypervisor::preconfig {
 
   File {
     owner => root,
@@ -32,7 +32,7 @@ class proxmox::hypervisor::preconfig {
   ->
   # Remove Enterprise repository (need a subscription)
   file { '/etc/apt/sources.list.d/pve-enterprise.list':
-    ensure => $proxmox::hypervisor::pve_enterprise_repo_ensure,
+    ensure => $proxmox4::hypervisor::pve_enterprise_repo_ensure,
     notify => Exec[apt_update],
   }
   ->
@@ -66,10 +66,10 @@ class proxmox::hypervisor::preconfig {
 
   $values = [ 'v1', 'v2' ]
 
-  file { $proxmox::hypervisor::pve_modules_file_path:
+  file { $proxmox4::hypervisor::pve_modules_file_path:
     ensure  => present,
-    content => template($proxmox::hypervisor::pve_modules_file_content),
+    content => template($proxmox4::hypervisor::pve_modules_file_content),
     require => File['/etc/modules-load.d'],
   }
 
-} # Private class: proxmox::hypervisor::preconfig
+} # Private class: proxmox4::hypervisor::preconfig

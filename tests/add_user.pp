@@ -1,1 +1,1 @@
-proxmox::hypervisor::user { 'zaphod@pam': group => 'sysadmin', }
+proxmox4::hypervisor::user { 'zaphod@pam': group => 'sysadmin', }

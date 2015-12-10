@@ -1,4 +1,4 @@
-class { 'proxmox::hypervisor':
+class { 'proxmox4::hypervisor':
   kvm_only => true,
 }
 

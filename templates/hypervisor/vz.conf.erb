@@ -41,7 +41,7 @@ VE_PRIVATE=/var/lib/vz/private/$VEID
 VZWDOG="no"
 
 ## IPv4 iptables kernel modules to be enabled in CTs by default
-<% if scope.lookupvar('proxmox::hypervisor::vz_iptables_modules') == true -%>
+<% if scope.lookupvar('proxmox4::hypervisor::vz_iptables_modules') == true -%>
 IPTABLES="ipt_REJECT ipt_recent ipt_owner ipt_REDIRECT ipt_tos ipt_TOS ipt_LOG ip_conntrack ipt_limit ipt_multiport iptable_filter iptable_mangle ipt_TCPMSS ipt_tcpmss ipt_ttl ipt_length ipt_state iptable_nat ip_nat_ftp"
 <% else -%>
 IPTABLES=""

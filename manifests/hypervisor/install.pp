@@ -42,10 +42,8 @@ class proxmox4::hypervisor::install {
     ->
     package { $proxmox4::hypervisor::kernel_pkg_name:
       ensure => $proxmox4::hypervisor::ve_pkg_ensure,
-      notify => Exec['update_grub','grub_reboot'],
+      notify => Exec['update_grub'],
     }
-    # The kernel that allow KVM + OpenVZ is older than the standard Debian's
-    #  kernel, so grub reboot must be used
 
   }
 
@@ -54,12 +52,5 @@ class proxmox4::hypervisor::install {
     command     => 'update-grub',
     refreshonly => true,
   }
-
-  # Choose a different line in the grub
-  exec { 'grub_reboot':
-    command     => 'grub-reboot 2',
-    refreshonly => true,
-  }
-
 
 } # Private class: proxmox4::hypervisor::install

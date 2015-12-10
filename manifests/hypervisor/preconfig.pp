@@ -47,17 +47,6 @@ class proxmox4::hypervisor::preconfig {
     key_server  => 'keyserver.ubuntu.com',
   }
 
-  # Set the grub default to saved to be able to use grub-set-default during
-  #  the installation
-  if ! defined(Augeas['grub_default']) {
-    augeas { 'grub_default':
-      context => '/files/etc/default/grub',
-      changes => [
-        'set GRUB_DEFAULT saved',
-      ],
-    }
-  }
-
   if ! defined(File['/etc/modules-load.d']) {
     file { '/etc/modules-load.d':
       ensure => directory,

@@ -41,16 +41,6 @@ class proxmox4::params {
 
       }
 
-      ## VM - OpenVZ
-      # Network
-      $vm_interfaces_path         = '/etc/network/interfaces'
-      $vm_interfaces_content      = 'proxmox/vm/openzv_interfaces.erb'
-      $vm_interfaces_tail_path    = '/etc/network/interfaces.tail'
-      $vm_interfaces_tail_content = 'proxmox/vm/openzv_interfaces.tail.erb'
-      $network_service_name       = 'networking'
-      $network_service_manage     = true
-      $network_service_enabled    = true
-
     }
     default: {
           fail("Proxmox Virtual Environment only works with Debian system; And the OpenVZ configuration has been tested only with Debian family; So osfamily (${::osfamily}) or lsbdistid (${::lsbdistid}) is unsupported")

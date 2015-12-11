@@ -13,3 +13,4 @@
 * Remove OpenVZ configuration for the Hypervisor.
 * Ensure to run a 'full-upgrade' once repository added.
 * Add Postfix to the recommended packages.
+* Remove OpenVZ CT management.

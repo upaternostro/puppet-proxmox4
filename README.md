@@ -9,7 +9,6 @@
     * [Beginning with Proxmox](#beginning-with-proxmox)
 4. [Usage](#usage)
     * [Hypervisor](#hypervisor)
-    * [VM](#vm)
 5. [Reference](#reference)
     * [Classes](#classes)
     * [Defined types](#defined-types)
@@ -135,21 +134,6 @@ node /hyper0[12]/ inherits "pve_node" {
 ```
 Will create a Cluster Proxmox with name "Deepthought", the master will be "hyper01". You also can manage all ssh ressources (and host) manually on each nodes.
 
-### VM
-
-Only OpenVZ is supported right now but the vm's class will check-it by it self:
-```
-include proxmox4::vm
-```
-
-#### proxmox4::vm::openvz
-
-Automatically call by the `proxmox4::vm` class, it will manage network configuration, but only few configurations are possible:
-* Only one Virtual Ethernet device (aka veth) and it will work with **DHCP**.
-* If a veth is available, it will be the main network's interface (set the default gateway throught eth0).
-* If a veth is available, only one Virtual Network device (aka venet) as chance to work (the first one), because all others routes will be flushed.
-* If there are only venet: no changes.
-
 ## Reference
 
 ### Classes
@@ -157,8 +141,6 @@ Automatically call by the `proxmox4::vm` class, it will manage network configura
 * `proxmox`: Main class, do nothing right now.
 
 * `proxmox4::hypervisor`: Install the Proxmox hypervisor on the system.
-
-* `proxmox4::vm`: Manage virtual machines and containers.
 
 ### Defined types
 
@@ -188,9 +170,9 @@ proxmox4::hypervisor::user { 'marvin':
 * `ve_pkg_ensure`: What to set the Virtual Environnment package to. Can be 'present', 'absent' or 'version'. Defaults to 'present'.
 * `ve_pkg_name`: The list of VirtualEnvironnment packages. Can be an array [ 'proxmox-ve', 'ksm-control-daemon', 'open-iscsi', 'pve-firmware' ].
 * `kernel_pkg_name`: The list of packages to install the new PVE kernel. Can be an array [ 'pve-kernel-4.2.6-1-pve', '...' ].
-* `rec_pkg_name`: The list of recommended and usefull packages for Proxmox. Can be an array [ 'ntp', 'ssh', 'lvm2', 'bridge-utils' ].
+* `rec_pkg_name`: The list of recommended and usefull packages for Proxmox. Can be an array [ 'bridge-utils', 'lvm2', 'ntp', 'postfix', 'ssh' ].
 * `old_pkg_ensure`: What to set useless packages (non recommended, previous kernel, ...). Can be 'present' or 'absent'. Defaults to 'absent'.
-* `old_pkg_name`: The list of useless packages. Can be an array [ 'acpid',  'linux-image-amd64', 'linux-base', 'linux-image-3.2.0-4-amd64' ].
+* `old_pkg_name`: The list of useless packages. Can be an array [ 'acpid',  'linux-image-amd64', 'linux-base', 'linux-image-3.16.0-4-amd64' ].
 * `pve_enterprise_repo_ensure`: Choose to keep the PVE enterprise repository. Can be 'present' or 'absent'. Defaults to 'absent'.
 * `pveproxy_default_path`: Path of the configuration file read by the PveProxy service. Defaults to '/etc/default/pveproxy'.
 * `pveproxy_default_content`: Template file use to generate the previous configuration file. Default to 'proxmox/hypervisor/pveproxy_default.erb'.
@@ -206,15 +188,6 @@ proxmox4::hypervisor::user { 'marvin':
 * `labs_firewall_rule`: If set to 'true', Puppet will set a iptable rule to allow WebGUI and VNC's port access. Can be 'true' or 'false'. Defaults to 'false'.
 * `cluster_master_ip`: The ip address of the "master" node that will create the cluster. Must be an IP address. Defaults to 'undef'.
 * `cluster_name`: The cluster's name. Defaults to 'undef'.
-
-#### proxmox4::vm
-* `vm_interfaces_path`: The main network configuration's file. Defaults to '/etc/network/interfaces'.
-* `vm_interfaces_content`: Template file used to generate the previous configuration file. Defaults to 'proxmox/vm/openvz_interfaces.erb'.
-* `vm_interfaces_tail_path`: A second network configuration file that will be concatenated in the main. Defaults to '/etc/network/interfaces.tail'.
-* `vm_interfaces_tail_content`: Template file used to generate the previous configuration file. Defaults to 'proxmox/vm/openzv_interfaces.tail.erb'.
-* `network_service_name`: Network's service name. Defaults to 'networking'.
-* `network_service_manage`: If set to 'true', Puppet will manage the network's service. Can be 'true' or 'false'. Defaults to 'true'.
-* `network_service_enabled`: If set to 'true', Puppet will ensure the network's service is running. Can be 'true' or 'false'. Defaults to 'true'.
 
 Other notes
 -----------

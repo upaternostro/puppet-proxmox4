@@ -12,7 +12,7 @@ class proxmox4::params {
         $kernel_pkg_name            = [ 'pve-kernel-4.2.6-1-pve' ]
 
         # Recommended packages
-        $rec_pkg_name               = [ 'ntp', 'ssh', 'lvm2', 'bridge-utils' ]
+        $rec_pkg_name               = [ 'bridge-utils', 'lvm2', 'ntp', 'postfix', 'ssh' ]
 
         # Old useless packages
         $old_pkg_ensure             = 'absent'

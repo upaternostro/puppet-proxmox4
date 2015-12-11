@@ -12,3 +12,4 @@
 * The PVE Kernel is newer than the default Debian one, so doesn't need grub-set-default anymore.
 * Remove OpenVZ configuration for the Hypervisor.
 * Ensure to run a 'full-upgrade' once repository added.
+* Add Postfix to the recommended packages.

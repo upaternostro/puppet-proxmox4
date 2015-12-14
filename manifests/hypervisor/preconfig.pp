@@ -37,7 +37,7 @@ class proxmox4::hypervisor::preconfig {
   }
   ->
   # Add the standard repository (~community)
-  apt::source {'proxmox':
+  apt::source {'proxmox4':
     ensure      => present,
     location    => 'http://download.proxmox.com/debian',
     release     => $::lsbdistcodename,

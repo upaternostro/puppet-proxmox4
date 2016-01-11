@@ -32,7 +32,7 @@ class proxmox4::hypervisor::cluster
       exec { "Create ${proxmox4::hypervisor::cluster_name} cluster on ${proxmox4::hypervisor::cluster_master_ip}":
         command => "pvecm create ${proxmox4::hypervisor::cluster_name}",
         onlyif  => 'uname -r | grep -- "-pve"',
-        creates => '/etc/pve/cluster.conf',
+        creates => '/etc/pve/corosync.conf',
       }
     }
     else {
@@ -41,7 +41,7 @@ class proxmox4::hypervisor::cluster
       exec { "Connect to ${proxmox4::hypervisor::cluster_name} cluster":
         command => "pvecm add ${proxmox4::hypervisor::cluster_master_ip}",
         onlyif  => 'uname -r | grep -- "-pve"',
-        creates => '/etc/pve/cluster.conf',
+        creates => '/etc/pve/corosync.conf',
       }
     }
   }

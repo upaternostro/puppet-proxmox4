@@ -14,3 +14,4 @@
 * Ensure to run a 'full-upgrade' once repository added.
 * Add Postfix to the recommended packages.
 * Remove OpenVZ CT management.
+* cluster.conf file no longer existes, use corosync.conf instead.

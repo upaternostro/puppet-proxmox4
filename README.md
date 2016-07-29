@@ -169,7 +169,7 @@ proxmox4::hypervisor::user { 'marvin':
 
 * `ve_pkg_ensure`: What to set the Virtual Environnment package to. Can be 'present', 'absent' or 'version'. Defaults to 'present'.
 * `ve_pkg_name`: The list of VirtualEnvironnment packages. Can be an array [ 'proxmox-ve', 'ksm-control-daemon', 'open-iscsi', 'pve-firmware' ].
-* `kernel_pkg_name`: The list of packages to install the new PVE kernel. Can be an array [ 'pve-kernel-4.2.6-1-pve', '...' ].
+* `kernel_pkg_name`: The list of packages to install the new PVE kernel. Can be an array [ 'pve-kernel-4.4.13-2-pve', '...' ].
 * `rec_pkg_name`: The list of recommended and usefull packages for Proxmox. Can be an array [ 'bridge-utils', 'lvm2', 'ntp', 'postfix', 'ssh' ].
 * `old_pkg_ensure`: What to set useless packages (non recommended, previous kernel, ...). Can be 'present' or 'absent'. Defaults to 'absent'.
 * `old_pkg_name`: The list of useless packages. Can be an array [ 'acpid',  'linux-image-amd64', 'linux-base', 'linux-image-3.16.0-4-amd64' ].

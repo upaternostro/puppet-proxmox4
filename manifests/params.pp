@@ -9,7 +9,7 @@ class proxmox4::params {
         $ve_pkg_name                = [ 'proxmox-ve', 'ksm-control-daemon', 'open-iscsi', 'pve-firmware' ]
 
         # PVE Kernel
-        $kernel_pkg_name            = [ 'pve-kernel-4.2.6-1-pve' ]
+        $kernel_pkg_name            = [ 'pve-kernel-4.4.16-1-pve' ]
 
         # Recommended packages
         $rec_pkg_name               = [ 'bridge-utils', 'lvm2', 'ntp', 'postfix', 'ssh' ]

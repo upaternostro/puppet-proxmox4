@@ -1,0 +1,9 @@
+# Ensure to detect all LV
+/sbin/lvm pvscan
+/sbin/lvm vgscan
+/sbin/lvm vgchange -ay
+
+echo "Wait for 2s"
+sleep 2
+
+exit 0

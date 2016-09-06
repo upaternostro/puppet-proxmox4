@@ -59,4 +59,13 @@ class proxmox4::hypervisor::preconfig {
     require => File['/etc/modules-load.d'],
   }
 
+  # Add a delay at boot to allow a good LVM detection
+  if $proxmox4::hypervisor::pve_lvm_delay == true {
+    file { $proxmox4::params::init_lvm_script_path:
+      ensure  => present,
+      content => template($proxmox4::hypervisor::init_lvm_script_content),
+    }
+  }
+
+
 } # Private class: proxmox4::hypervisor::preconfig

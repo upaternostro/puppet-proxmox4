@@ -36,6 +36,11 @@ class proxmox4::params {
         $pve_modules_file_path      = '/etc/modules-load.d/proxmox.conf'
         $pve_modules_file_content   = 'proxmox4/hypervisor/proxmox_modules.conf.erb'
 
+        # Boot
+        $pve_lvm_delay              = true
+        $init_lvm_script_path       = '/etc/initramfs-tools/scripts/local-top/lvm-manual'
+        $init_lvm_script_content    = 'proxmox4/hypervisor/initramfs-lvm-manual.erb'
+
         # Firewall
         $labs_firewall_rule         = false
 

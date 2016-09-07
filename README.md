@@ -175,7 +175,7 @@ proxmox4::hypervisor::user { 'marvin':
 * `old_pkg_name`: The list of useless packages. Can be an array [ 'acpid',  'linux-image-amd64', 'linux-base', 'linux-image-3.16.0-4-amd64' ].
 * `pve_enterprise_repo_ensure`: Choose to keep the PVE enterprise repository. Can be 'present' or 'absent'. Defaults to 'absent'.
 * `pveproxy_default_path`: Path of the configuration file read by the PveProxy service. Defaults to '/etc/default/pveproxy'.
-* `pveproxy_default_content`: Template file use to generate the previous configuration file. Default to 'proxmox/hypervisor/pveproxy_default.erb'.
+* `pveproxy_default_content`: Template file use to generate the previous configuration file. Default to 'proxmox4/hypervisor/pveproxy_default.erb'.
 * `pveproxy_allow`:   Can be ip addresses, range or network; separated by a comma (example: '192.168.0.0/24,10.10.0.1-10.10.0.5'). Defaults to '127.0.0.1'.
 * `pveproxy_deny`: Unauthorized IP addresses. Can be 'all' or ip addresses, range or network; separated by a comma. Defaults to 'all'.
 * `pveproxy_policy`: The policy access. Can be 'allow' or 'deny'. Defaults to 'deny'.
@@ -184,7 +184,10 @@ proxmox4::hypervisor::user { 'marvin':
 * `pveproxy_service_enabled`: If set to 'true', Puppet will ensure the WebGUI's service is running. Can be 'true' or 'false'. Defaults to 'true'.
 * `pve_modules_list`: The list of additionnal modules to load at boot time.
 * `pve_modules_file_path`: The configuration file that will contain the modules list. Defaults to '/etc/modules-load.d/proxmox.conf'.
-* `pve_modules_file_content`: Template file used to generate the previous configuration file. Defaults to 'proxmox/hypervisor/proxmox_modules.conf.erb'.
+* `pve_modules_file_content`: Template file used to generate the previous configuration file. Defaults to 'proxmox4/hypervisor/proxmox_modules.conf.erb'.
+* `pve_lvm_delay` : If set to 'true', it will add a initramfs-tools script toto ensure a good detection of all LVM. Can be 'true' or 'false'. Defaults to 'true'.
+* `init_lvm_script_path` : Path of the initramfs-tools script to ensure a good detection of all LVM at startup. Defaults to '/etc/initramfs-tools/scripts/local-top/lvm-manual'.
+* `init_lvm_script_content` : Temple file use to generate the previous configuration file. Default to 'proxmox4/hypervisor/initramfs-lvm-manual.erb'.
 * `labs_firewall_rule`: If set to 'true', Puppet will set a iptable rule to allow WebGUI and VNC's port access. Can be 'true' or 'false'. Defaults to 'false'.
 * `cluster_master_ip`: The ip address of the "master" node that will create the cluster. Must be an IP address. Defaults to 'undef'.
 * `cluster_name`: The cluster's name. Defaults to 'undef'.
@@ -224,7 +227,7 @@ See [hypervisor usage](#hypervisor) if you want to disable it or [parameters](#p
 Limitations
 -----------
 
-This module will only work on Debian 7.x versions.
+This module will only work on Debian 8.x versions.
 
 Development
 -----------

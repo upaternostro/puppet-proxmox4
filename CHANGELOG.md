@@ -1,6 +1,11 @@
+###
+
+##### Features
+* Add a small bootdelay to ensure a good detection of all LVM (with initramfs-tools).
+* Rebuild all initrd if modification to initramfs-tools script.
 
 ##### Changes
-* Upgrade to the last pve-kernel : pve-kernel-4.4.13-2-pve
+* Upgrade to the last pve-kernel : pve-kernel-4.4.16-2-pve
 
 ---------------------------------------
 

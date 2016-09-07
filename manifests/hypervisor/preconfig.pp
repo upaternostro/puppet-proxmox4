@@ -10,6 +10,11 @@ class proxmox4::hypervisor::preconfig {
     mode  => 644,
   }
 
+  Exec {
+    path      => [ '/bin', '/sbin', '/usr/bin', '/usr/sbin' ],
+    logoutput => 'on_failure',
+  }
+
   # Hostname should be resolvable via /etc/hosts
   #/files/etc/hosts/2
   #/files/etc/hosts/2/ipaddr = '214.938.839.123'
@@ -64,6 +69,12 @@ class proxmox4::hypervisor::preconfig {
     file { $proxmox4::params::init_lvm_script_path:
       ensure  => present,
       content => template($proxmox4::hypervisor::init_lvm_script_content),
+      notify  => Exec['rebuild_initrd'],
+    }
+
+    exec { 'rebuild_initrd':
+      command     => 'update-initramfs -k all -u',
+      refreshonly => true,
     }
   }
 

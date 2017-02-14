@@ -5,7 +5,7 @@
 * Rebuild all initrd if modification to initramfs-tools script.
 
 ##### Changes
-* Upgrade to the last pve-kernel : pve-kernel-4.4.16-2-pve
+* Upgrade to the last pve-kernel : pve-kernel-4.4.35-2-pve
 * Correct the file to remove the subscription warning.
 
 ---------------------------------------

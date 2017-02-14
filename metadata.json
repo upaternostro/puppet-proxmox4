@@ -1,12 +1,12 @@
 {
-  "name": "gardouille-proxmox",
+  "name": "gardouille-proxmox4",
   "version": "0.2.3",
   "author": "Gardouille",
-  "summary": "Manage Proxmox hypervisor and KVM virtual machines or OpenVZ containers.",
+  "summary": "Manage Proxmox hypervisor and KVM virtual machines or LXC containers.",
   "license": "WTFPL",
-  "source": "https://git.101010.fr/puppet/proxmox",
-  "project_page": "https://git.101010.fr/puppet/proxmox",
-  "issues_url": "https://git.101010.fr/puppet/proxmox/issues",
+  "source": "https://git.101010.fr/puppet/proxmox4",
+  "project_page": "https://git.101010.fr/puppet/proxmox4",
+  "issues_url": "https://git.101010.fr/puppet/proxmox4/issues",
   "description": "Proxmox module",
   "operatingsystem_support": [
     {

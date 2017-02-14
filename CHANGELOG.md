@@ -6,6 +6,7 @@
 
 ##### Changes
 * Upgrade to the last pve-kernel : pve-kernel-4.4.16-2-pve
+* Correct the file to remove the subscription warning.
 
 ---------------------------------------
 

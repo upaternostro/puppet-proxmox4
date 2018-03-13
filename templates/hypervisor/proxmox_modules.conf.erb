@@ -2,6 +2,8 @@
 #Don't edit, please see https://forge.puppetlabs.com/gardouille/proxmox4
 
 ## Load additonnal modules for Proxmox
+<% if @pve_modules_list != nil -%>
 <% @pve_modules_list.each do |val| -%>
 <%= val %>
+<% end -%>
 <% end -%>
